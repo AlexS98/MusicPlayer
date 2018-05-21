@@ -1,0 +1,21 @@
+﻿<Window x:Class="MusicPlayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicPlayer"
+        mc:Ignorable="d"
+        Title="Music player" Height="130.168" Width="445.867" Activated="Window_Activated">
+    <Grid>
+        <Button x:Name="Prev" Content="◄◄" HorizontalAlignment="Left" Margin="154,62,0,0" VerticalAlignment="Top" Width="37" Height="24" Click="Prev_Click" />
+        <Button x:Name="Next" Content="►►" HorizontalAlignment="Left" Margin="245,62,0,0" VerticalAlignment="Top" Width="36" Height="24" Click="Next_Click" />
+        <Button x:Name="Play" Content="►" HorizontalAlignment="Left" Margin="196,49,0,0" VerticalAlignment="Top" Width="44" Height="44" FontSize="22" Click="Play_Click"/>
+        <Label Content="Egypt Central - Over and Under" HorizontalAlignment="Center" Margin="10,10,10.2,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic" FontSize="18" Width="419"/>
+        <Label Content="Current time:" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top"/>
+        <Label Content="Total time:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="CurrentTime" Content="01:12" HorizontalAlignment="Left" Margin="88,49,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label x:Name="TotalTime" Content="03:58" HorizontalAlignment="Left" Margin="74,68,0,0" VerticalAlignment="Top" Width="61"/>
+        <Button x:Name="Playlist" Content="Playlist" HorizontalAlignment="Left" Margin="315,44,0,0" VerticalAlignment="Top" Width="70"/>
+
+    </Grid>
+</Window>
