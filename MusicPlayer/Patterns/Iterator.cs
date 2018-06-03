@@ -9,7 +9,7 @@ namespace MusicPlayer.Patterns
         T this[int index] { get; set; }
     }
 
-    public interface IIterator<T>
+    public interface IIterator<out T>
     {
         T First();
         T Next();
@@ -35,7 +35,10 @@ namespace MusicPlayer.Patterns
 
         public Song Next()
         {
-            if (!(++_current < _aggregate.Count)) _current = 0;
+            if (++_current >= _aggregate.Count)
+            {
+                _current = 0;
+            }
             return _aggregate[_current];
         }
 

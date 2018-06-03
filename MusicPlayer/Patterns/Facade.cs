@@ -17,7 +17,7 @@ namespace MusicPlayer.Patterns
             command = new PlayerCommand(singleton);
         }
 
-        public void Play(string path = @"D:\Music\Egypt Central - Discography\2008 - Egypt Central\03. Over And Under.mp3")
+        public void Play()
         {
             if (singleton.WaveOut.PlaybackState == PlaybackState.Paused)
             {
@@ -42,11 +42,8 @@ namespace MusicPlayer.Patterns
         public void Next()
         {
             SoundSingleton.GetInstance().StopWaveOut();
-            if (!iterator.IsDone())
-            {
-                command.Init(iterator.Next().Path);
-                command.Play();
-            }
+            command.Init(iterator.Next().Path);
+            command.Play();
         }
 
         public void Prev()

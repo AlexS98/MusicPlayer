@@ -4,7 +4,7 @@ namespace MusicPlayer.Patterns
 {
     public class SoundSingleton
     {
-        private WaveOut waveOut { get; set; }
+        private WaveOut waveOut;
 
         private static SoundSingleton instance;
 
@@ -15,7 +15,7 @@ namespace MusicPlayer.Patterns
             if (instance == null)
             {
                 instance = new SoundSingleton();
-                instance.waveOut = new WaveOut();// Process.GetProcessesByName("MusicPlayer")[0].MainWindowHandle);
+                instance.waveOut = new WaveOut();
                 instance.waveOut.DeviceNumber = 0;
                 instance.waveOut.NumberOfBuffers = 1;
             }
