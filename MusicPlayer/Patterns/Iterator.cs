@@ -23,22 +23,31 @@ namespace MusicPlayer.Patterns
         private readonly IAggregate<Song> _aggregate;
         private int _current;
 
-        public SongIterator(IAggregate<Song> aggregate) => _aggregate = aggregate;
+        public SongIterator(IAggregate<Song> aggregate)
+        {
+            _aggregate = aggregate;
+        }
 
-        public Song First() => _aggregate[0];
+        public Song First()
+        {
+            return _aggregate[0];
+        }
 
         public Song Next()
         {
-            Song ret = null;
-            _current++;
-            if (_current < _aggregate.Count)
-                ret = _aggregate[_current];
-            return ret;
+            if (!(++_current < _aggregate.Count)) _current = 0;
+            return _aggregate[_current];
         }
 
-        public Song CurrentItem() => _aggregate[_current];
+        public Song CurrentItem()
+        {
+            return _aggregate[_current];
+        }
 
-        public bool IsDone() => _current >= _aggregate.Count;
+        public bool IsDone()
+        {
+            return _current >= _aggregate.Count;
+        }
 
         public Song Prev()
         {

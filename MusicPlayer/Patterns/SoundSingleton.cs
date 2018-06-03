@@ -22,9 +22,16 @@ namespace MusicPlayer.Patterns
             return instance;
         }
 
-        public WaveOut GetWaveOut()
+        public WaveOut WaveOut
         {
-            return GetInstance().waveOut;
+            set
+            {
+                GetInstance().waveOut = value;
+            }
+            get
+            {
+                return GetInstance().waveOut;
+            }
         }
 
         public void StopWaveOut()

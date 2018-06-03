@@ -6,38 +6,37 @@ namespace MusicPlayer.Patterns
 {
     public class Facade
     {
-        WaveOut singleton;
+        SoundSingleton singleton;
         IIterator<Song> iterator;
-        Invoker invoker;
+        ICommand command;
 
         public Facade(string path = @"D:\Music\Egypt Central - Discography\2008 - Egypt Central")
         {
             iterator = new Playlist(path).CreateIterator();
-            singleton = SoundSingleton.GetInstance().GetWaveOut();
-            PlayerCommand command = new PlayerCommand(singleton);
-            invoker = new Invoker(command);
+            singleton = SoundSingleton.GetInstance();
+            command = new PlayerCommand(singleton);
         }
 
         public void Play(string path = @"D:\Music\Egypt Central - Discography\2008 - Egypt Central\03. Over And Under.mp3")
         {
-            if (singleton.PlaybackState == PlaybackState.Playing || singleton.PlaybackState == PlaybackState.Stopped)
+            if (singleton.WaveOut.PlaybackState == PlaybackState.Paused)
+            {
+                command.Play();
+            }
+            else if (singleton.WaveOut.PlaybackState == PlaybackState.Playing)
+            {
+                command.Pause();
+            }
+            else 
             {
                 SoundSingleton.GetInstance().StopWaveOut();
-                if (File.Exists(path))
+                if (File.Exists(iterator.CurrentItem().Path))
                 {
-                    invoker.Init(path);
-                    invoker.Run();
-                    string name = Path.GetFileName(path).Split('.')[0];
+                    command.Init(iterator.CurrentItem().Path);
+                    command.Play();
+                    string name = Path.GetFileName(iterator.CurrentItem().Path).Split('.')[0];
                 }
-            }
-            else if (singleton.PlaybackState == PlaybackState.Paused)
-            {
-                invoker.Run();
-            }
-            else
-            {
-                invoker.Pause();
-            }
+            } 
         }
 
         public void Next()
@@ -45,16 +44,16 @@ namespace MusicPlayer.Patterns
             SoundSingleton.GetInstance().StopWaveOut();
             if (!iterator.IsDone())
             {
-                invoker.Init(iterator.Next().Path);
-                invoker.Run();
+                command.Init(iterator.Next().Path);
+                command.Play();
             }
         }
 
         public void Prev()
         {
             SoundSingleton.GetInstance().StopWaveOut();
-            invoker.Init(iterator.Prev().Path);
-            invoker.Run();
+            command.Init(iterator.Prev().Path);
+            command.Play();
         }
     }
 }

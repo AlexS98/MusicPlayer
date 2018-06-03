@@ -10,9 +10,22 @@ namespace MusicPlayer.Additional
         private string Path { get; set; }
         public List<Song> Songs { set; get; }
 
-        public int Count => Songs.ToArray().Length;
-     
-        public Song this[int index] { get => Songs.ToArray()[index]; set => throw new NotImplementedException(); }
+        public int Count
+        {
+            get
+            {
+                return Songs.ToArray().Length;
+            }
+        }
+
+        public Song this[int index]
+        {
+            get { return Songs.ToArray()[index]; }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         private Playlist() { }
 
