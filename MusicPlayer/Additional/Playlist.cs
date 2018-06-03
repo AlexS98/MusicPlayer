@@ -37,6 +37,7 @@ namespace MusicPlayer.Additional
             {
                 Songs.Add(new Song(file.FullName, "mp3", file.Name, file.Directory.Name));
             }
+            if (Songs.Count == 0) throw new FileNotFoundException("Не найден ни один mp3 файл в папке");
         }
 
         public IIterator<Song> CreateIterator()

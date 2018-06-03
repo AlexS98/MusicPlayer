@@ -15,7 +15,8 @@
         <Label Content="Total time:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
         <Label x:Name="CurrentTime" Content="01:12" HorizontalAlignment="Left" Margin="88,49,0,0" VerticalAlignment="Top" Width="61"/>
         <Label x:Name="TotalTime" Content="03:58" HorizontalAlignment="Left" Margin="74,68,0,0" VerticalAlignment="Top" Width="61"/>
-        <Button x:Name="Playlist" Content="Playlist" HorizontalAlignment="Left" Margin="315,44,0,0" VerticalAlignment="Top" Width="70"/>
+        <Button x:Name="AddFolder" Content="Add folder" HorizontalAlignment="Left" Margin="303,44,0,0" VerticalAlignment="Top" Width="126" Click="AddFolder_Click"/>
+        <Button x:Name="Playlist" Content="Playlist" HorizontalAlignment="Left" Margin="303,68,0,0" VerticalAlignment="Top" Width="126" Click="Playlist_Click"/>
 
     </Grid>
 </Window>

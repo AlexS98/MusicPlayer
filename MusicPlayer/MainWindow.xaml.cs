@@ -1,4 +1,7 @@
-﻿using MusicPlayer.Patterns;
+﻿using Microsoft.Win32;
+using MusicPlayer.Patterns;
+using System;
+using System.IO;
 using System.Windows;
 
 namespace MusicPlayer
@@ -31,14 +34,35 @@ namespace MusicPlayer
             facade.Next();
         }
 
-        bool initFacade = false;
-        private void Window_Activated(object sender, System.EventArgs e)
+        bool initFacade;
+        private void Window_Activated(object sender, EventArgs e)
         {
             if (!initFacade)
             {
                 initFacade = true;
                 facade = new Facade();
             }
+        }
+
+        private void AddFolder_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog
+            {
+                InitialDirectory = "",
+                Filter = "mp3 files (*.mp3)|*.mp3",
+                FilterIndex = 1,
+                RestoreDirectory = true
+            };
+            if (fileDialog.ShowDialog() == true)
+            {
+                facade = new Facade(Path.GetDirectoryName(fileDialog.FileName));
+            }
+        }
+
+        private void Playlist_Click(object sender, RoutedEventArgs e)
+        {
+            PlaylistWindow playlistWindow = new PlaylistWindow();
+            playlistWindow.Show();
         }
     }
 }
