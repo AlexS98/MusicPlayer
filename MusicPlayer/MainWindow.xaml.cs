@@ -9,7 +9,6 @@ namespace MusicPlayer
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
-    /// Music player (iterator, command, memento, facade, visitor, clientserver)
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -20,19 +19,24 @@ namespace MusicPlayer
 
         Facade facade;
 
+        bool play;
         private void Play_Click(object sender, RoutedEventArgs e)
         {
             facade.Play();
+            Play.Content = play ? "►" : "||";
+            play = !play;
         }
 
         private void Prev_Click(object sender, RoutedEventArgs e)
         {
             facade.Prev();
+            Play.Content = "||";
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             facade.Next();
+            Play.Content = "||";
         }
 
         bool initFacade;
@@ -57,6 +61,8 @@ namespace MusicPlayer
             };
             if (fileDialog.ShowDialog() == true)
             {
+                facade.Dispose();
+                Play.Content = "►";
                 facade = new Facade(Path.GetDirectoryName(fileDialog.FileName));
                 facade.AddInitEvent(ShowSongName);
             }

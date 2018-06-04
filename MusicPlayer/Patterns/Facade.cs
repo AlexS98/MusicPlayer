@@ -1,11 +1,12 @@
 ﻿using MusicPlayer.Additional;
 using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace MusicPlayer.Patterns
 {
-    public class Facade
+    public class Facade : IDisposable
     {
         SoundSingleton singleton;
         IIterator<Song> iterator;
@@ -74,6 +75,11 @@ namespace MusicPlayer.Patterns
         public void AddInitEvent(InitEvent myHandler)
         {
             command.NewSongInit += myHandler; 
+        }
+
+        public void Dispose()
+        {
+            command._Dispose();
         }
     }
 }
