@@ -9,11 +9,16 @@ namespace MusicPlayer.Patterns
         void Pause();
         void Stop();
         void _Dispose();
+        event InitEvent NewSongInit;
     }
+
+    public delegate void InitEvent(string name, string time);
 
     public class PlayerCommand : ICommand
     {
         SoundSingleton Singleton { get; set; }
+
+        public event InitEvent NewSongInit;
 
         private PlayerCommand() { }
 
@@ -24,30 +29,33 @@ namespace MusicPlayer.Patterns
 
         public void Init(string path)
         {
-            Singleton.WaveOut?.Dispose();
-            Singleton.WaveOut = new WaveOut();
+            Singleton.SoundWaveOut?.Dispose();
+            Singleton.SoundWaveOut = new WaveOut();
             var reader = new Mp3FileReader(path);
-            Singleton.WaveOut.Init(reader);
+            Singleton.SoundWaveOut.Init(reader);
+            var n = path.Split('\\');
+            
+            NewSongInit(n[n.Length - 1], reader.TotalTime.ToString(@"mm\:ss"));
         }
 
         public void Pause()
         {
-            Singleton.WaveOut.Pause();
+            Singleton.SoundWaveOut.Pause();
         }
 
         public void Play()
         {
-            Singleton.WaveOut.Play();
+            Singleton.SoundWaveOut.Play();
         }
 
         public void Stop()
         {
-            Singleton.WaveOut.Stop();
+            Singleton.SoundWaveOut.Stop();
         }
 
         public void _Dispose()
         {
-            Singleton.WaveOut.Dispose();
+            Singleton.SoundWaveOut.Dispose();
         }
     }
 }

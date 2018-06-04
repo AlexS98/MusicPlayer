@@ -22,7 +22,7 @@ namespace MusicPlayer.Patterns
             return instance;
         }
 
-        public WaveOut WaveOut
+        public WaveOut SoundWaveOut
         {
             set
             {

@@ -96,9 +96,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patterns\Memento.cs" />
     <Compile Include="Patterns\SoundSingleton.cs" />
-    <Compile Include="Patterns\Visitor.cs" />
     <Compile Include="PlaylistWindow.xaml.cs">
       <DependentUpon>PlaylistWindow.xaml</DependentUpon>
     </Compile>

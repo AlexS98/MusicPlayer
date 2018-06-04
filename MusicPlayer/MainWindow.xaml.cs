@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using MusicPlayer.Patterns;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
@@ -41,6 +42,7 @@ namespace MusicPlayer
             {
                 initFacade = true;
                 facade = new Facade();
+                facade.AddInitEvent(ShowSongName);
             }
         }
 
@@ -56,13 +58,21 @@ namespace MusicPlayer
             if (fileDialog.ShowDialog() == true)
             {
                 facade = new Facade(Path.GetDirectoryName(fileDialog.FileName));
+                facade.AddInitEvent(ShowSongName);
             }
         }
 
         private void Playlist_Click(object sender, RoutedEventArgs e)
         {
-            PlaylistWindow playlistWindow = new PlaylistWindow();
+            PlaylistWindow playlistWindow = new PlaylistWindow(facade.GetSongsList());
+            playlistWindow.Owner = this;
             playlistWindow.Show();
+        }
+
+        private void ShowSongName(string name, string time)
+        {
+            SongName.Content = name;
+            TotalTime.Content = time;
         }
     }
 }

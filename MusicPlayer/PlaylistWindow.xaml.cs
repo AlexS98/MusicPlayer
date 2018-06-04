@@ -19,9 +19,13 @@ namespace MusicPlayer
     /// </summary>
     public partial class PlaylistWindow : Window
     {
-        public PlaylistWindow()
+        public PlaylistWindow(List<string> list)
         {
             InitializeComponent();
+            foreach (var item in list)
+            {
+                List.Items.Add(item);
+            }
         }
     }
 }

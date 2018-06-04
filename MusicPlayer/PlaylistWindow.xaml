@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicPlayer"
-        mc:Ignorable="d"
-        Title="PlaylistWindow" Height="600" Width="300">
+        Title="PlaylistWindow" Height="500" Width="300">
     <Grid>
-        
+        <ListBox Name="List" HorizontalAlignment="Left" Height="450" Margin="10,10,0,0" VerticalAlignment="Top" Width="274"/>
+
     </Grid>
 </Window>
