@@ -76,7 +76,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Additional\InterfaceData.cs" />
     <Compile Include="Additional\Playlist.cs" />
     <Compile Include="Additional\Song.cs" />
     <Compile Include="App.xaml.cs">

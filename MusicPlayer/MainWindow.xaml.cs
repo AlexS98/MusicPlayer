@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using MusicPlayer.Patterns;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
@@ -31,12 +30,14 @@ namespace MusicPlayer
         {
             facade.Prev();
             Play.Content = "||";
+            play = true;
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             facade.Next();
             Play.Content = "||";
+            play = true;
         }
 
         bool initFacade;

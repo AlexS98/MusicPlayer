@@ -79,7 +79,7 @@ namespace MusicPlayer.Patterns
 
         public void Dispose()
         {
-            command._Dispose();
+            command.Dispose();
         }
     }
 }

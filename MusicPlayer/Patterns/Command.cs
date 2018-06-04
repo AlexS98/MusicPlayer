@@ -1,4 +1,5 @@
 ﻿using NAudio.Wave;
+using System;
 
 namespace MusicPlayer.Patterns
 {
@@ -8,13 +9,13 @@ namespace MusicPlayer.Patterns
         void Play();
         void Pause();
         void Stop();
-        void _Dispose();
+        void Dispose();
         event InitEvent NewSongInit;
     }
 
     public delegate void InitEvent(string name, string time);
 
-    public class PlayerCommand : ICommand
+    public class PlayerCommand : ICommand, IDisposable
     {
         SoundSingleton Singleton { get; set; }
 
@@ -53,7 +54,7 @@ namespace MusicPlayer.Patterns
             Singleton.SoundWaveOut.Stop();
         }
 
-        public void _Dispose()
+        public void Dispose()
         {
             Singleton.SoundWaveOut.Dispose();
         }
